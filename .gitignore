@@ -1,0 +1,24 @@
+# Operating System Files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment & Credentials
+.env
+config/env.local.php
+
+# Generated Reports & Temp Files
+exports/*.csv
+exports/*.pdf
+exports/*.json
+!exports/.gitkeep
+
+# Logs
+*.log
+
