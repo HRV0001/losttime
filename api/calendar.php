@@ -239,9 +239,8 @@ if ($action === 'month') {
     $userTokenStmt->execute(['id' => $userId]);
     $userToken = $userTokenStmt->fetchColumn() ?: '';
 
-    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $feedUrl = "{$protocol}{$host}/losttime/api/calendar.php?action=feed&token={$userToken}";
+    $baseUri = (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/losttime') !== false) ? '/losttime' : '';
+    $feedUrl = "{$protocol}{$host}{$baseUri}/api/calendar.php?action=feed&token={$userToken}";
 
     sendJsonResponse([
         'success' => true,

@@ -1,8 +1,8 @@
 -- LostTime Database Schema & Seed Data
 -- Database: losttime_db
 
-CREATE DATABASE IF NOT EXISTS losttime_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE losttime_db;
+-- CREATE DATABASE IF NOT EXISTS losttime_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE losttime_db;
 
 DROP TABLE IF EXISTS activities;
 DROP TABLE IF EXISTS suggestions;

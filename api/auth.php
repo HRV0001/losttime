@@ -52,9 +52,7 @@ if ($action === 'login') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['name'];
-            $_SESSION['user_email'] = $user['email'];
+            setAuthSession($user['id'], $user['name'], $user['email']);
 
             sendJsonResponse([
                 'success' => true,
@@ -113,9 +111,7 @@ if ($action === 'register') {
         $userId = $pdo->lastInsertId();
 
         // Auto-login new user
-        $_SESSION['user_id'] = $userId;
-        $_SESSION['user_name'] = $name;
-        $_SESSION['user_email'] = $email;
+        setAuthSession($userId, $name, $email);
 
         // Optionally create welcome starter activity
         $initAct = $pdo->prepare("
@@ -139,16 +135,7 @@ if ($action === 'register') {
 }
 
 if ($action === 'logout') {
-    $_SESSION = [];
-    if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000,
-            $params["path"], $params["domain"],
-            $params["secure"], $params["httponly"]
-        );
-    }
-    session_destroy();
-
+    clearAuthSession();
     sendJsonResponse(['success' => true, 'message' => 'Logged out successfully.']);
 }
 
