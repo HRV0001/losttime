@@ -17,10 +17,12 @@ chdir(__DIR__ . '/..');
 switch ($cleanPath) {
     case '':
     case 'index':
+        header('Content-Type: text/html; charset=UTF-8');
         require __DIR__ . '/../index.php';
         break;
 
     case 'login':
+        header('Content-Type: text/html; charset=UTF-8');
         require __DIR__ . '/../login.php';
         break;
 
@@ -29,6 +31,7 @@ switch ($cleanPath) {
         break;
 
     case 'reports':
+        header('Content-Type: text/html; charset=UTF-8');
         require __DIR__ . '/../reports.php';
         break;
 
